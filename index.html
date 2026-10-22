@@ -4,11 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>:root{color-scheme:light}body{margin:0}img{max-width:100%}</style>
-<title>Yifu Li</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#F4F7F4">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yifu Li (李一夫)">
+<meta property="og:description" content="Assistant Professor, School of Business, Renmin University of China. Research in auditing and accounting with Big Data and AI.">
+<meta property="og:image" content="og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+@font-face{font-family:"Newsreader";src:url(fonts/newsreader.woff) format("woff");font-weight:400 500;font-style:normal;font-display:swap}
+@font-face{font-family:"Newsreader";src:url(fonts/newsreader-italic.woff) format("woff");font-weight:400 500;font-style:italic;font-display:swap}
+@font-face{font-family:"Hanken Grotesk";src:url(fonts/hanken-grotesk.woff) format("woff");font-weight:400 600;font-style:normal;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url(fonts/ibm-plex-mono-400.woff) format("woff");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url(fonts/ibm-plex-mono-500.woff) format("woff");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Noto Serif SC";src:url(fonts/noto-serif-sc-name.woff) format("woff");font-weight:400 500;font-style:normal;font-display:swap}
+</style>
+<title>Yifu Li (李一夫)</title>
 <meta name="description" content="Yifu Li, Assistant Professor at the School of Business, Renmin University of China, Beijing, China. Research in auditing, corporate disclosure and natural language processing.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: a ledger sheet. A fixed margin column on the left (portrait, contact, then account-head labels) and one ruled vertical line down the page; entries run to its right. The name is closed with an accountant's double rule. */
 :root{
@@ -22,7 +38,8 @@
   --overlay:rgba(9,14,12,.94);
   --on-overlay:#E2EAE5;
   --on-overlay-rule:rgba(226,234,229,.35);
-  --f-display:"Newsreader","Iowan Old Style",Georgia,"Songti SC",serif;
+  --cap-shade:rgba(9,14,12,.62);
+  --f-display:"Newsreader","Noto Serif SC","Iowan Old Style",Georgia,"Songti SC","SimSun",serif;
   --f-body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --margin-col:248px;
@@ -64,6 +81,17 @@ h1,h2,h3,h4{ text-wrap:balance; }
 .nav a:hover{ color:var(--ink); }
 .nav ul a{ display:inline-block; padding-bottom:3px; border-bottom:3px double transparent; }
 .nav ul a[aria-current="page"]{ color:var(--ink); border-bottom-color:var(--accent); }
+.menu-btn{ display:none; }
+@media (max-width: 640px){
+  .menu-btn{ display:inline-block; }
+  .nav ul{ display:none; width:100%; flex-direction:column; align-items:stretch; gap:0; }
+  .nav.open ul{ display:flex; }
+  .nav ul li{ border-top:1px solid var(--rule); }
+  .nav ul a{ display:block; padding-block:12px; border-bottom:0; font-size:16px; }
+  .nav ul a[aria-current="page"]{ color:var(--accent); }
+  .nav ul a[aria-current="page"]::after{ content:" ·"; }
+  .nav ul li:last-child{ padding-block:12px 4px; }
+}
 
 /* one view at a time: the home view carries the introduction, every other section opens from the menu */
 .view{ animation:view-in .22s ease-out; }
@@ -98,12 +126,14 @@ h1,h2,h3,h4{ text-wrap:balance; }
 .intro{ grid-area:intro; padding-left:var(--col-gap); min-width:0; }
 .contact{ grid-area:contact; display:grid; gap:18px; font-size:14.5px; align-content:start; min-width:0; }
 
-.eyebrow{ font-family:var(--f-mono); font-size:12.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); margin:6px 0 20px; }
+.eyebrow{ display:grid; gap:4px; font-family:var(--f-mono); font-size:12.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--accent); margin:6px 0 22px; }
+.eyebrow .org{ font-family:var(--f-body); font-size:15.5px; letter-spacing:0; text-transform:none; color:var(--muted); }
 h1{
   font-family:var(--f-display); font-weight:500;
-  font-size:clamp(3.1rem, 8vw, 5.6rem); line-height:1; letter-spacing:-.025em; margin:0;
+  font-size:clamp(2.3rem, 5.4vw, 3.7rem); line-height:1.1; letter-spacing:-.02em; margin:0;
 }
-.total{ display:inline-block; padding-bottom:.09em; border-bottom:.09em double var(--accent); }
+.total{ display:inline-block; padding-bottom:.12em; border-bottom:.1em double var(--accent); }
+.total .zh{ font-weight:400; letter-spacing:0; }
 .news{
   display:inline-flex; align-items:center; gap:9px; margin:30px 0 0;
   font-size:14px; font-weight:500; color:var(--accent); background:var(--accent-soft);
@@ -113,7 +143,7 @@ h1{
 .news:hover{ text-decoration:underline; text-underline-offset:3px; }
 .lead{
   font-family:var(--f-display); font-size:clamp(1.35rem, 2.5vw, 1.7rem); line-height:1.32;
-  margin:36px 0 14px; max-width:30ch; text-wrap:balance;
+  margin:30px 0 14px; max-width:36ch; text-wrap:balance;
 }
 .lead em{ color:var(--accent); }
 .bio{ max-width:62ch; margin:0; }
@@ -168,16 +198,26 @@ h1{
 .status.on{ background:var(--accent-soft); color:var(--accent); border-color:transparent; }
 a.status{ text-decoration:none; }
 a.status:hover{ border-color:var(--accent); color:var(--accent); }
-.row.hobby{ grid-template-columns:minmax(0,1fr) auto; align-items:center; }
+.row.hobby, .row.split{ grid-template-columns:minmax(0,1fr) auto; align-items:center; }
 .gallery{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; margin-top:20px; }
 .shot{ display:block; padding:0; border:0; background:var(--accent-soft); border-radius:3px; overflow:hidden; cursor:zoom-in; }
 .shot.wide{ grid-column:1 / -1; }
 .shot img{ display:block; width:100%; max-width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; transition:transform .4s ease, filter .4s ease; }
 .shot:hover img{ transform:scale(1.015); }
-.shot.tall{ position:relative; grid-row:span 2; }
+.shot{ position:relative; }
+.shot.tall{ grid-row:span 2; }
+.cap{
+  position:absolute; left:0; right:0; bottom:0; padding:30px 12px 10px; text-align:left; pointer-events:none;
+  font-family:var(--f-mono); font-size:11.5px; letter-spacing:.04em; color:var(--on-overlay);
+  background:linear-gradient(to top, var(--cap-shade), transparent);
+  opacity:0; transition:opacity .25s ease;
+}
+.shot:hover .cap, .shot:focus-visible .cap{ opacity:1; }
+@media (hover: none){ .cap{ opacity:1; } }
+.lb-cap{ margin:0; font-family:var(--f-mono); font-size:12px; letter-spacing:.04em; color:var(--on-overlay); text-align:center; }
 .shot.tall img{ position:absolute; inset:0; width:100%; height:100%; aspect-ratio:auto; }
 .lightbox{
-  position:fixed; inset:0; z-index:50; display:grid; place-items:center;
+  position:fixed; inset:0; z-index:50; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
   background:var(--overlay);
   padding-top:max(56px, calc(env(safe-area-inset-top, 0px) + 48px));
   padding-bottom:max(24px, env(safe-area-inset-bottom, 0px));
@@ -185,7 +225,7 @@ a.status:hover{ border-color:var(--accent); color:var(--accent); }
   padding-right:max(16px, env(safe-area-inset-right, 0px));
   cursor:zoom-out;
 }
-.lightbox img{ max-width:100%; max-height:calc(100vh - 96px); width:auto; height:auto; object-fit:contain; border-radius:2px; }
+.lightbox img{ max-width:100%; max-height:calc(100vh - 130px); width:auto; height:auto; object-fit:contain; border-radius:2px; }
 .lb-close{
   position:absolute; top:calc(12px + env(safe-area-inset-top, 0px)); right:max(16px, env(safe-area-inset-right, 0px));
   font-family:var(--f-mono); font-size:12px; color:var(--on-overlay); background:transparent;
@@ -213,10 +253,10 @@ a.status:hover{ border-color:var(--accent); color:var(--accent); }
   .ledger{ --yr-w:3.4rem; }
   .ledger.wide{ --yr-w:5.6rem; }
   .row{ gap:4px 14px; }
-  .row:not(.two):not(.plain):not(.hobby){ grid-template-columns:var(--yr-w) minmax(0,1fr); }
-  .row:not(.hobby) .status{ grid-column:2; justify-self:start; margin-top:8px; }
-  .row.hobby{ grid-template-columns:minmax(0,1fr); }
-  .row.hobby .status{ justify-self:start; margin-top:6px; }
+  .row:not(.two):not(.plain):not(.hobby):not(.split){ grid-template-columns:var(--yr-w) minmax(0,1fr); }
+  .row:not(.hobby):not(.split) .status{ grid-column:2; justify-self:start; margin-top:8px; }
+  .row.hobby, .row.split{ grid-template-columns:minmax(0,1fr); }
+  .row.hobby .status, .row.split .status{ justify-self:start; margin-top:6px; }
   .citation{ grid-template-columns:minmax(0,1fr); }
   .gallery{ grid-template-columns:minmax(0,1fr); gap:10px; }
   .shot.tall{ grid-row:auto; }
@@ -233,7 +273,8 @@ a.status:hover{ border-color:var(--accent); color:var(--accent); }
 
   <nav class="nav" aria-label="Main">
     <a class="brand" href="#" data-nav="home">Yifu Li</a>
-    <ul>
+    <button class="pill-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav-list">Menu</button>
+    <ul id="nav-list">
       <li><a href="#" data-nav="home">Home</a></li>
       <li><a href="#research" data-nav="research">Research</a></li>
       <li><a href="#teaching" data-nav="teaching">Teaching</a></li>
@@ -252,13 +293,14 @@ a.status:hover{ border-color:var(--accent); color:var(--accent); }
     </figure>
 
     <div class="intro">
-      <p class="eyebrow">Assistant Professor · School of Business, Renmin University of China, Beijing, China</p>
-      <h1><span class="total">Yifu Li</span></h1>
+      <p class="eyebrow"><span>Assistant Professor</span><span class="org">School of Business, Renmin University of China</span></p>
+      <h1><span class="total">Yifu Li <span class="zh">(李一夫)</span></span></h1>
       <p class="lead">My research uses <em>Big Data and AI</em> methods to study auditing and accounting.</p>
       <p class="bio">I joined the School of Business at Renmin University of China in 2023, after completing my Ph.D. in Accounting at City University of Hong Kong. Before that, I received an M.Sc. in Applied Economics (Finance) from Harbin Institute of Technology, and a B.Eng. in Measurement and Control Technology and Instrument from Harbin Institute of Technology, Weihai.</p>
       <ul class="tags" aria-label="Research interests">
         <li>Auditing</li>
         <li>Corporate Disclosure</li>
+        <li>Big Data &amp; AI</li>
         <li>Natural Language Processing</li>
       </ul>
     </div>
@@ -274,14 +316,6 @@ a.status:hover{ border-color:var(--accent); color:var(--accent); }
       <div>
         <span class="label">Address</span>
         <p>School of Business<br>Renmin University of China<br>Beijing, China</p>
-      </div>
-      <div>
-        <span class="label">Coding</span>
-        <p>Python · Stata · C</p>
-      </div>
-      <div>
-        <span class="label">Languages</span>
-        <p>Mandarin Chinese (native)<br>English (fluent)</p>
       </div>
     </div>
   </header>
@@ -313,14 +347,14 @@ a.status:hover{ border-color:var(--accent); color:var(--accent); }
     <div class="entry-body">
       <h3 class="sub">Renmin University of China · Beijing, China</h3>
       <ul class="ledger">
-        <li class="row plain"><h4>Financial Analysis using Big Data</h4></li>
-        <li class="row plain"><h4>Machine Learning and Natural Language Processing</h4></li>
-        <li class="row plain"><h4>Python Basic and Natural Language Processing</h4></li>
-        <li class="row plain"><h4>Introduction to Accounting</h4></li>
+        <li class="row split"><h4>Financial Analysis using Big Data</h4><span class="status">Undergraduate</span></li>
+        <li class="row split"><h4>Machine Learning and Natural Language Processing</h4><span class="status">Undergraduate</span></li>
+        <li class="row split"><h4>Python Basic and Natural Language Processing</h4><span class="status on">Master’s</span></li>
+        <li class="row split"><h4>Introduction to Accounting</h4><span class="status">Undergraduate</span></li>
       </ul>
       <h3 class="sub">City University of Hong Kong · Hong Kong SAR, China</h3>
       <ul class="ledger">
-        <li class="row plain"><h4>Financial Accounting</h4></li>
+        <li class="row split"><h4>Financial Accounting</h4><span class="status">Undergraduate</span></li>
       </ul>
     </div>
   </section>
@@ -328,7 +362,7 @@ a.status:hover{ border-color:var(--accent); color:var(--accent); }
   <section class="entry view" data-view="background" hidden>
     <div class="entry-head">
       <h2>Background</h2>
-      <p>Employment and education</p>
+      <p>Employment, education and skills</p>
     </div>
     <div class="entry-body">
       <h3 class="sub">Employment</h3>
@@ -379,6 +413,11 @@ a.status:hover{ border-color:var(--accent); color:var(--accent); }
           </div>
         </li>
       </ul>
+      <h3 class="sub">Skills</h3>
+      <ul class="ledger wide">
+        <li class="row two"><span class="yr">Coding</span><div><h4>Python · Stata · C</h4></div></li>
+        <li class="row two"><span class="yr">Languages</span><div><h4>Mandarin Chinese (native) · English (fluent)</h4></div></li>
+      </ul>
     </div>
   </section>
 
@@ -428,30 +467,39 @@ a.status:hover{ border-color:var(--accent); color:var(--accent); }
       <div class="gallery">
         <button class="shot wide" type="button" data-full="photography/1.jpg">
           <img src="photography/1.jpg" alt="City skyline across a harbour, framed by two orange pumpkin decorations hanging from a boat canopy" width="1600" height="1067" loading="lazy">
+          <span class="cap">Kowloon, Hong Kong SAR, China</span>
         </button>
         <button class="shot" type="button" data-full="photography/2.jpg">
           <img src="photography/2.jpg" alt="Shop window of food posters behind a dark grid of frames, with a green panel reading Eat Is Your Life" width="1600" height="1067" loading="lazy">
+          <span class="cap">Kowloon, Hong Kong SAR, China</span>
         </button>
         <button class="shot" type="button" data-full="photography/3.jpg">
           <img src="photography/3.jpg" alt="Red boat with a blue canopy speeding across grey-green water, trailing white wake" width="1600" height="1067" loading="lazy">
+          <span class="cap">Kowloon, Hong Kong SAR, China</span>
         </button>
         <button class="shot wide" type="button" data-full="photography/4.jpg">
           <img src="photography/4.jpg" alt="Pedestrians walking uphill past a wall of layered posters on Queen's Road Central" width="1439" height="960" loading="lazy">
+          <span class="cap">Hong Kong Island, Hong Kong SAR, China</span>
         </button>
         <button class="shot tall" type="button" data-full="photography/5.jpg">
           <img src="photography/5.jpg" alt="Hanging clock under a covered walkway, with a red taxi blurred in the street behind" width="1067" height="1600" loading="lazy">
+          <span class="cap">Hong Kong Island, Hong Kong SAR, China</span>
         </button>
         <button class="shot" type="button" data-full="photography/6.jpg">
           <img src="photography/6.jpg" alt="Black and white border collie standing on a paved slope beside a person in an orange jacket" width="1214" height="810" loading="lazy">
+          <span class="cap">Hong Kong Island, Hong Kong SAR, China</span>
         </button>
         <button class="shot" type="button" data-full="photography/7.jpg">
           <img src="photography/7.jpg" alt="Blurred commuters crossing a footbridge in front of a gridded building facade at dusk" width="1600" height="1067" loading="lazy">
+          <span class="cap">Hong Kong Island, Hong Kong SAR, China</span>
         </button>
         <button class="shot" type="button" data-full="photography/8.jpg">
           <img src="photography/8.jpg" alt="Silhouette of a pigeon on a ledge, with a blue skyscraper out of focus behind" width="1214" height="810" loading="lazy">
+          <span class="cap">Hong Kong Island, Hong Kong SAR, China</span>
         </button>
         <button class="shot" type="button" data-full="photography/9.jpg">
           <img src="photography/9.jpg" alt="Red and white taxi turning at a junction marked Look Left and Look Right, seen from above" width="1440" height="960" loading="lazy">
+          <span class="cap">Hong Kong Island, Hong Kong SAR, China</span>
         </button>
       </div>
     </div>
@@ -462,6 +510,7 @@ a.status:hover{ border-color:var(--accent); color:var(--accent); }
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photograph" hidden>
     <button class="lb-close" id="lb-close" type="button">Close</button>
     <img id="lb-img" src="" alt="">
+    <p class="lb-cap" id="lb-cap"></p>
   </div>
 
   <footer class="foot">
@@ -518,6 +567,15 @@ a.status:hover{ border-color:var(--accent); color:var(--accent); }
       try { history.pushState(null, '', name === 'home' ? location.pathname + location.search : '#' + name); } catch (err) {}
     });
   });
+  var nav = document.querySelector('.nav');
+  var menuBtn = document.getElementById('menu-btn');
+  function setMenu(open){
+    nav.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.textContent = open ? 'Close' : 'Menu';
+  }
+  menuBtn.addEventListener('click', function(){ setMenu(!nav.classList.contains('open')); });
+  document.querySelectorAll('.nav [data-nav]').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
   window.addEventListener('popstate', function(){ show(fromHash(), true); });
   window.addEventListener('hashchange', function(){ show(fromHash(), true); });
   show(fromHash(), false);
@@ -531,6 +589,8 @@ a.status:hover{ border-color:var(--accent); color:var(--accent); }
     var img = btn.querySelector('img');
     lbImg.src = btn.getAttribute('data-full');
     lbImg.alt = img ? img.alt : '';
+    var cap = btn.querySelector('.cap');
+    document.getElementById('lb-cap').textContent = cap ? cap.textContent : '';
     lb.hidden = false;
     document.body.style.overflow = 'hidden';
     lastShot = btn;
