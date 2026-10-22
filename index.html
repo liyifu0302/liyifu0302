@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}</style>
+<title>Yifu Li</title>
+<meta name="description" content="Yifu Li, Assistant Professor at the School of Business, Renmin University of China, Beijing, China. Research in auditing, corporate disclosure and natural language processing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a ledger sheet. A fixed margin column on the left (portrait, contact, then account-head labels) and one ruled vertical line down the page; entries run to its right. The name is closed with an accountant's double rule. */
+:root{
+  --paper:#F4F7F4;
+  --surface:#FCFDFB;
+  --ink:#14211B;
+  --muted:#56665D;
+  --rule:#D2DCD5;
+  --accent:#1C6A4B;
+  --accent-soft:#E1EDE5;
+  --overlay:rgba(9,14,12,.94);
+  --on-overlay:#E2EAE5;
+  --on-overlay-rule:rgba(226,234,229,.35);
+  --f-display:"Newsreader","Iowan Old Style",Georgia,"Songti SC",serif;
+  --f-body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --margin-col:248px;
+  --col-gap:40px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1411; --surface:#131D18; --ink:#E2EAE5; --muted:#94A49A;
+    --rule:#26352D; --accent:#7CCBA2; --accent-soft:#182B22;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1411; --surface:#131D18; --ink:#E2EAE5; --muted:#94A49A;
+  --rule:#26352D; --accent:#7CCBA2; --accent-soft:#182B22;
+  color-scheme:dark;
+}
+
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--f-body); font-size:16px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.page{
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap{ max-width:1080px; margin:0 auto; }
+a{ color:inherit; }
+:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+h1,h2,h3,h4{ text-wrap:balance; }
+[hidden]{ display:none !important; }
+
+/* nav */
+.nav{ display:flex; align-items:center; justify-content:space-between; gap:12px 24px; flex-wrap:wrap; padding-block:22px; border-bottom:1px solid var(--rule); }
+.brand{ font-family:var(--f-display); font-size:21px; font-weight:500; text-decoration:none; letter-spacing:-.01em; }
+.nav ul{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 22px; list-style:none; margin:0; padding:0; }
+.nav a{ text-decoration:none; font-size:14.5px; color:var(--muted); transition:color .15s; }
+.nav a:hover{ color:var(--ink); }
+.nav ul a{ display:inline-block; padding-bottom:3px; border-bottom:3px double transparent; }
+.nav ul a[aria-current="page"]{ color:var(--ink); border-bottom-color:var(--accent); }
+
+/* one view at a time: the home view carries the introduction, every other section opens from the menu */
+.view{ animation:view-in .22s ease-out; }
+@keyframes view-in{ from{ opacity:.35; transform:translateY(4px); } to{ opacity:1; transform:none; } }
+.entry.view{ border-top:0; min-height:420px; align-content:start; }
+.pill-btn{
+  font-family:var(--f-mono); font-size:12px; color:var(--muted);
+  background:transparent; border:1px solid var(--rule); border-radius:999px;
+  padding:4px 11px; cursor:pointer; transition:color .15s, border-color .15s;
+}
+.pill-btn:hover{ color:var(--ink); border-color:var(--muted); }
+
+/* the ledger sheet: one vertical rule between margin column and entries */
+.sheet{
+  background-image:linear-gradient(var(--rule), var(--rule));
+  background-repeat:no-repeat;
+  background-size:1px 100%;
+  background-position:calc(var(--margin-col) + var(--col-gap)) 0;
+}
+
+/* hero */
+.hero{
+  display:grid;
+  grid-template-columns:var(--margin-col) minmax(0,1fr);
+  grid-template-rows:auto 1fr;
+  grid-template-areas:"photo intro" "contact intro";
+  column-gap:var(--col-gap); row-gap:28px;
+  padding-block:48px 64px;
+}
+.photo{ grid-area:photo; margin:0; }
+.photo img{ display:block; width:100%; max-width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; border-radius:3px; background:var(--accent-soft); }
+.intro{ grid-area:intro; padding-left:var(--col-gap); min-width:0; }
+.contact{ grid-area:contact; display:grid; gap:18px; font-size:14.5px; align-content:start; min-width:0; }
+
+.eyebrow{ font-family:var(--f-mono); font-size:12.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); margin:6px 0 20px; }
+h1{
+  font-family:var(--f-display); font-weight:500;
+  font-size:clamp(3.1rem, 8vw, 5.6rem); line-height:1; letter-spacing:-.025em; margin:0;
+}
+.total{ display:inline-block; padding-bottom:.09em; border-bottom:.09em double var(--accent); }
+.news{
+  display:inline-flex; align-items:center; gap:9px; margin:30px 0 0;
+  font-size:14px; font-weight:500; color:var(--accent); background:var(--accent-soft);
+  padding:6px 13px 6px 11px; border-radius:999px; text-decoration:none;
+}
+.news::before{ content:""; flex:none; width:7px; height:7px; border-radius:50%; background:var(--accent); }
+.news:hover{ text-decoration:underline; text-underline-offset:3px; }
+.lead{
+  font-family:var(--f-display); font-size:clamp(1.35rem, 2.5vw, 1.7rem); line-height:1.32;
+  margin:36px 0 14px; max-width:30ch; text-wrap:balance;
+}
+.lead em{ color:var(--accent); }
+.bio{ max-width:62ch; margin:0; }
+.tags{ display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:26px 0 0; }
+.tags li{ font-size:13.5px; padding:4px 11px; border:1px solid var(--rule); border-radius:4px; color:var(--muted); background:var(--surface); }
+
+.label{ display:block; font-family:var(--f-mono); font-size:11.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+.email-row{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.selectable{ user-select:all; overflow-wrap:anywhere; }
+.linklist{ list-style:none; padding:0; margin:0; }
+.linklist a{
+  display:flex; justify-content:space-between; gap:12px; text-decoration:none;
+  padding-block:7px; border-block:1px solid var(--rule); transition:color .15s;
+}
+.linklist a span{ font-family:var(--f-mono); font-size:12px; color:var(--muted); }
+.linklist a:hover{ color:var(--accent); }
+.contact p{ margin:0; }
+
+/* sections */
+.entry{ display:grid; grid-template-columns:var(--margin-col) minmax(0,1fr); column-gap:var(--col-gap); row-gap:20px; padding-block:52px; border-top:1px solid var(--rule); }
+.entry-head h2{ font-family:var(--f-display); font-weight:500; font-size:28px; line-height:1.15; margin:0; letter-spacing:-.01em; }
+.entry-head p{ font-family:var(--f-mono); font-size:12px; color:var(--muted); margin:8px 0 0; }
+.entry-body{ min-width:0; padding-left:var(--col-gap); }
+
+.feature{ background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:28px clamp(18px, 3vw, 34px); }
+.kicker{ font-family:var(--f-mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin:0 0 12px; }
+.feature h3{ font-family:var(--f-display); font-weight:500; font-size:clamp(1.5rem, 2.7vw, 1.95rem); line-height:1.2; margin:0 0 10px; letter-spacing:-.01em; }
+.meta{ font-size:14.5px; color:var(--muted); margin:0; }
+.abstract{ margin:18px 0 0; max-width:68ch; }
+.citation{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px 20px; align-items:start; margin-top:22px; padding-top:18px; border-top:1px solid var(--rule); }
+.citation p{ margin:0; font-size:14px; color:var(--muted); line-height:1.55; }
+.citation b{ color:var(--ink); font-weight:600; }
+
+.sub{ font-family:var(--f-mono); font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:0 0 4px; }
+.ledger + .sub{ margin-top:40px; }
+.ledger{ list-style:none; margin:0; padding:0; --yr-w:4.25rem; }
+.ledger.wide{ --yr-w:6.25rem; }
+.row{ display:grid; grid-template-columns:var(--yr-w) minmax(0,1fr) auto; gap:4px 20px; padding-block:16px; border-bottom:1px solid var(--rule); }
+.ledger.compact .row{ padding-block:11px; }
+.row.plain{ grid-template-columns:minmax(0,1fr); }
+.row.two{ grid-template-columns:var(--yr-w) minmax(0,1fr); }
+.yr{ font-family:var(--f-mono); font-size:13px; color:var(--muted); font-variant-numeric:tabular-nums; padding-top:3px; white-space:nowrap; }
+.row h4{ font-family:var(--f-display); font-weight:500; font-size:19.5px; line-height:1.3; margin:0; }
+.row p{ margin:0; }
+.who{ font-size:14px; color:var(--muted); margin:3px 0 0 !important; }
+.ledger.compact .row p{ font-size:15.5px; }
+.status{
+  align-self:start; justify-self:end; white-space:nowrap;
+  font-family:var(--f-mono); font-size:11.5px; letter-spacing:.03em;
+  padding:3px 9px; border-radius:999px; border:1px solid var(--rule); color:var(--muted);
+}
+.status.on{ background:var(--accent-soft); color:var(--accent); border-color:transparent; }
+a.status{ text-decoration:none; }
+a.status:hover{ border-color:var(--accent); color:var(--accent); }
+.row.hobby{ grid-template-columns:minmax(0,1fr) auto; align-items:center; }
+.gallery{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; margin-top:20px; }
+.shot{ display:block; padding:0; border:0; background:var(--accent-soft); border-radius:3px; overflow:hidden; cursor:zoom-in; }
+.shot.wide{ grid-column:1 / -1; }
+.shot img{ display:block; width:100%; max-width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; transition:transform .4s ease, filter .4s ease; }
+.shot:hover img{ transform:scale(1.015); }
+.shot.tall{ position:relative; grid-row:span 2; }
+.shot.tall img{ position:absolute; inset:0; width:100%; height:100%; aspect-ratio:auto; }
+.lightbox{
+  position:fixed; inset:0; z-index:50; display:grid; place-items:center;
+  background:var(--overlay);
+  padding-top:max(56px, calc(env(safe-area-inset-top, 0px) + 48px));
+  padding-bottom:max(24px, env(safe-area-inset-bottom, 0px));
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  cursor:zoom-out;
+}
+.lightbox img{ max-width:100%; max-height:calc(100vh - 96px); width:auto; height:auto; object-fit:contain; border-radius:2px; }
+.lb-close{
+  position:absolute; top:calc(12px + env(safe-area-inset-top, 0px)); right:max(16px, env(safe-area-inset-right, 0px));
+  font-family:var(--f-mono); font-size:12px; color:var(--on-overlay); background:transparent;
+  border:1px solid var(--on-overlay-rule); border-radius:999px; padding:5px 12px; cursor:pointer;
+}
+.service{ margin:0; max-width:62ch; }
+.service i{ font-family:var(--f-display); font-size:1.08em; }
+
+.foot{ display:flex; justify-content:space-between; gap:8px 24px; flex-wrap:wrap; padding-block:28px 40px; border-top:1px solid var(--rule); font-family:var(--f-mono); font-size:12px; color:var(--muted); }
+
+@media (max-width: 860px){
+  .sheet{ background-image:none; }
+  .hero{
+    grid-template-columns:minmax(0,1fr); grid-template-rows:auto;
+    grid-template-areas:"photo" "intro" "contact";
+    row-gap:32px; padding-block:32px 52px;
+  }
+  .photo{ width:180px; }
+  .intro{ padding-left:0; }
+  .contact{ grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:18px 32px; }
+  .entry{ grid-template-columns:minmax(0,1fr); padding-block:40px; }
+  .entry-body{ padding-left:0; }
+}
+@media (max-width: 520px){
+  .ledger{ --yr-w:3.4rem; }
+  .ledger.wide{ --yr-w:5.6rem; }
+  .row{ gap:4px 14px; }
+  .row:not(.two):not(.plain):not(.hobby){ grid-template-columns:var(--yr-w) minmax(0,1fr); }
+  .row:not(.hobby) .status{ grid-column:2; justify-self:start; margin-top:8px; }
+  .row.hobby{ grid-template-columns:minmax(0,1fr); }
+  .row.hobby .status{ justify-self:start; margin-top:6px; }
+  .citation{ grid-template-columns:minmax(0,1fr); }
+  .gallery{ grid-template-columns:minmax(0,1fr); gap:10px; }
+  .shot.tall{ grid-row:auto; }
+  .shot.tall img{ position:static; height:auto; aspect-ratio:2/3; }
+  .citation .pill-btn{ justify-self:start; }
+  .yr{ font-size:12px; }
+}
+@media (prefers-reduced-motion: reduce){ *{ transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+<div class="page">
+<div class="wrap">
+
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#" data-nav="home">Yifu Li</a>
+    <ul>
+      <li><a href="#" data-nav="home">Home</a></li>
+      <li><a href="#research" data-nav="research">Research</a></li>
+      <li><a href="#teaching" data-nav="teaching">Teaching</a></li>
+      <li><a href="#background" data-nav="background">Background</a></li>
+      <li><a href="#honors" data-nav="honors">Honors</a></li>
+      <li><a href="#beyond" data-nav="beyond">Beyond Research</a></li>
+      <li><button class="pill-btn" id="theme-toggle" type="button">Dark mode</button></li>
+    </ul>
+  </nav>
+
+  <div class="sheet">
+
+  <header class="hero view" data-view="home">
+    <figure class="photo">
+      <img src="photo.jpg" alt="Portrait of Yifu Li" width="640" height="800">
+    </figure>
+
+    <div class="intro">
+      <p class="eyebrow">Assistant Professor · School of Business, Renmin University of China, Beijing, China</p>
+      <h1><span class="total">Yifu Li</span></h1>
+      <p class="lead">My research uses <em>Big Data and AI</em> methods to study auditing and accounting.</p>
+      <p class="bio">I joined the School of Business at Renmin University of China in 2023, after completing my Ph.D. in Accounting at City University of Hong Kong. Before that, I received an M.Sc. in Applied Economics (Finance) from Harbin Institute of Technology, and a B.Eng. in Measurement and Control Technology and Instrument from Harbin Institute of Technology, Weihai.</p>
+      <ul class="tags" aria-label="Research interests">
+        <li>Auditing</li>
+        <li>Corporate Disclosure</li>
+        <li>Natural Language Processing</li>
+      </ul>
+    </div>
+
+    <div class="contact">
+      <div>
+        <span class="label">Email</span>
+        <div class="email-row">
+          <span class="selectable" id="email">liyifu@rmbs.ruc.edu.cn</span>
+          <button class="pill-btn" type="button" data-copy="email">Copy</button>
+        </div>
+      </div>
+      <div>
+        <span class="label">Address</span>
+        <p>School of Business<br>Renmin University of China<br>Beijing, China</p>
+      </div>
+      <div>
+        <span class="label">Coding</span>
+        <p>Python · Stata · C</p>
+      </div>
+      <div>
+        <span class="label">Languages</span>
+        <p>Mandarin Chinese (native)<br>English (fluent)</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="entry view" data-view="research" hidden>
+    <div class="entry-head">
+      <h2>Research</h2>
+      <p>Publications</p>
+    </div>
+    <div class="entry-body">
+      <article class="feature">
+        <p class="kicker">Forthcoming · Contemporary Accounting Research</p>
+        <h3>Auditors’ Response to Cybersecurity Risk: Human Capital Investment and Cross-Client Influence</h3>
+        <p class="meta">With B. Li, J. Pittman, and W. Wang · 2026</p>
+        <p class="abstract">Using online job postings data, we explore whether auditors adjust their human capital in response to clients’ cyber breach incidents. We find that audit offices increase their demand for cybersecurity specialists after their clients’ cyber breaches, implying that cyber breaches change not only client risk but also their auditor’s production function. Consistent with expectations, we document that this impact is larger when breaches involve their own clients (rather than those of peer offices within the same audit firm) and when breaches directly involve financial information. Our evidence holds for both cyber-focused and non-cyber-focused offices, highlighting the broad impact of cybersecurity risks on audit practices. Additionally, we find that audit offices with relatively high investment in cybersecurity human capital are better able to preserve their market share among clients in high-cyber-risk industries after a client’s cyber breach.</p>
+        <div class="citation">
+          <p id="cite-1">Li, B., <b>Li, Y.</b>, Pittman, J., &amp; Wang, W. (2026). Auditors’ response to cybersecurity risk: Human capital investment and cross-client influence. <i>Contemporary Accounting Research</i>, forthcoming.</p>
+          <button class="pill-btn" type="button" data-copy="cite-1">Copy citation</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="entry view" data-view="teaching" hidden>
+    <div class="entry-head">
+      <h2>Teaching</h2>
+      <p>Courses taught</p>
+    </div>
+    <div class="entry-body">
+      <h3 class="sub">Renmin University of China · Beijing, China</h3>
+      <ul class="ledger">
+        <li class="row plain"><h4>Financial Analysis using Big Data</h4></li>
+        <li class="row plain"><h4>Machine Learning and Natural Language Processing</h4></li>
+        <li class="row plain"><h4>Python Basic and Natural Language Processing</h4></li>
+        <li class="row plain"><h4>Introduction to Accounting</h4></li>
+      </ul>
+      <h3 class="sub">City University of Hong Kong · Hong Kong SAR, China</h3>
+      <ul class="ledger">
+        <li class="row plain"><h4>Financial Accounting</h4></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="entry view" data-view="background" hidden>
+    <div class="entry-head">
+      <h2>Background</h2>
+      <p>Employment and education</p>
+    </div>
+    <div class="entry-body">
+      <h3 class="sub">Employment</h3>
+      <ul class="ledger wide">
+        <li class="row two">
+          <span class="yr">2023–now</span>
+          <div>
+            <h4>Assistant Professor</h4>
+            <p class="who">School of Business, Renmin University of China · Beijing, China</p>
+          </div>
+        </li>
+        <li class="row two">
+          <span class="yr">2019</span>
+          <div>
+            <h4>Research Assistant to Dr. Li Bing</h4>
+            <p class="who">City University of Hong Kong · Hong Kong SAR, China</p>
+          </div>
+        </li>
+        <li class="row two">
+          <span class="yr">2018–2019</span>
+          <div>
+            <h4>Research Assistant, Accounting &amp; Finance Research Office</h4>
+            <p class="who">The Hong Kong Polytechnic University · Hong Kong SAR, China</p>
+          </div>
+        </li>
+      </ul>
+      <h3 class="sub">Education</h3>
+      <ul class="ledger wide">
+        <li class="row two">
+          <span class="yr">2019–2023</span>
+          <div>
+            <h4>Ph.D. in Accounting</h4>
+            <p class="who">City University of Hong Kong · Hong Kong SAR, China</p>
+          </div>
+        </li>
+        <li class="row two">
+          <span class="yr">2016–2018</span>
+          <div>
+            <h4>M.Sc. in Applied Economics (Finance)</h4>
+            <p class="who">Harbin Institute of Technology · Harbin, China</p>
+          </div>
+        </li>
+        <li class="row two">
+          <span class="yr">2012–2016</span>
+          <div>
+            <h4>B.Eng. in Measurement and Control Technology and Instrument</h4>
+            <p class="who">Harbin Institute of Technology, Weihai · Weihai, China</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="entry view" data-view="honors" hidden>
+    <div class="entry-head">
+      <h2>Honors &amp; Service</h2>
+      <p>Awards and reviewing</p>
+    </div>
+    <div class="entry-body">
+      <h3 class="sub">Honors and awards</h3>
+      <ul class="ledger wide compact">
+        <li class="row two"><span class="yr">2025</span><div><p>Outstanding Individual Award for Social Service</p><p class="who">Renmin University of China</p></div></li>
+        <li class="row two"><span class="yr">2022</span><div><p>College of Business Ph.D. Student Research Excellence Award</p><p class="who">City University of Hong Kong</p></div></li>
+      </ul>
+      <h3 class="sub">Ad-hoc reviewer</h3>
+      <p class="service" style="padding-top:12px"><i>Journal of Management Studies</i>, <i>Asia-Pacific Journal of Accounting and Economics</i>, <i>China Journal of Accounting Research</i></p>
+    </div>
+  </section>
+
+  <section class="entry view" data-view="beyond" hidden>
+    <div class="entry-head">
+      <h2>Beyond Research</h2>
+      <p>Side projects and interests</p>
+    </div>
+    <div class="entry-body">
+      <ul class="ledger">
+        <li class="row hobby">
+          <div>
+            <h4>PaperPilot</h4>
+            <p class="who">A Chrome extension for reading scholarly PDFs</p>
+          </div>
+          <a class="status" href="https://chromewebstore.google.com/detail/paperpilot/aafaoajjiobahffelmopmgaajfleapfj" target="_blank" rel="noopener">Chrome Web Store ↗</a>
+        </li>
+        <li class="row hobby">
+          <div>
+            <h4>Sim Racing</h4>
+            <p class="who">iRacing · peak ranking in the top 10% of sim drivers in China</p>
+          </div>
+          <span class="status on">Peak top 10%</span>
+        </li>
+        <li class="row hobby">
+          <div>
+            <h4>Photography</h4>
+          </div>
+        </li>
+      </ul>
+      <div class="gallery">
+        <button class="shot wide" type="button" data-full="photography/1.jpg">
+          <img src="photography/1.jpg" alt="City skyline across a harbour, framed by two orange pumpkin decorations hanging from a boat canopy" width="1600" height="1067" loading="lazy">
+        </button>
+        <button class="shot" type="button" data-full="photography/2.jpg">
+          <img src="photography/2.jpg" alt="Shop window of food posters behind a dark grid of frames, with a green panel reading Eat Is Your Life" width="1600" height="1067" loading="lazy">
+        </button>
+        <button class="shot" type="button" data-full="photography/3.jpg">
+          <img src="photography/3.jpg" alt="Red boat with a blue canopy speeding across grey-green water, trailing white wake" width="1600" height="1067" loading="lazy">
+        </button>
+        <button class="shot wide" type="button" data-full="photography/4.jpg">
+          <img src="photography/4.jpg" alt="Pedestrians walking uphill past a wall of layered posters on Queen's Road Central" width="1439" height="960" loading="lazy">
+        </button>
+        <button class="shot tall" type="button" data-full="photography/5.jpg">
+          <img src="photography/5.jpg" alt="Hanging clock under a covered walkway, with a red taxi blurred in the street behind" width="1067" height="1600" loading="lazy">
+        </button>
+        <button class="shot" type="button" data-full="photography/6.jpg">
+          <img src="photography/6.jpg" alt="Black and white border collie standing on a paved slope beside a person in an orange jacket" width="1214" height="810" loading="lazy">
+        </button>
+        <button class="shot" type="button" data-full="photography/7.jpg">
+          <img src="photography/7.jpg" alt="Blurred commuters crossing a footbridge in front of a gridded building facade at dusk" width="1600" height="1067" loading="lazy">
+        </button>
+        <button class="shot" type="button" data-full="photography/8.jpg">
+          <img src="photography/8.jpg" alt="Silhouette of a pigeon on a ledge, with a blue skyscraper out of focus behind" width="1214" height="810" loading="lazy">
+        </button>
+        <button class="shot" type="button" data-full="photography/9.jpg">
+          <img src="photography/9.jpg" alt="Red and white taxi turning at a junction marked Look Left and Look Right, seen from above" width="1440" height="960" loading="lazy">
+        </button>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photograph" hidden>
+    <button class="lb-close" id="lb-close" type="button">Close</button>
+    <img id="lb-img" src="" alt="">
+  </div>
+
+  <footer class="foot">
+    <span>Last updated October 2026</span>
+    <span>© 2026 Yifu Li</span>
+  </footer>
+
+</div>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function current(){
+    var t = root.getAttribute('data-theme');
+    if (t === 'dark' || t === 'light') return t;
+    return mq && mq.matches ? 'dark' : 'light';
+  }
+  function label(){ btn.textContent = current() === 'dark' ? 'Light mode' : 'Dark mode'; }
+  try {
+    var saved = localStorage.getItem('homepage-theme');
+    if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
+  } catch (e) {}
+  label();
+  if (mq && mq.addEventListener) mq.addEventListener('change', label);
+  btn.addEventListener('click', function(){
+    var next = current() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('homepage-theme', next); } catch (e) {}
+    label();
+  });
+
+  /* views: show one section at a time, keyed by a bare #token */
+  var views = {};
+  document.querySelectorAll('.view').forEach(function(v){ views[v.getAttribute('data-view')] = v; });
+  var navLinks = document.querySelectorAll('.nav ul a[data-nav]');
+  function show(name, scroll){
+    if (!views[name]) name = 'home';
+    Object.keys(views).forEach(function(k){ views[k].hidden = (k !== name); });
+    navLinks.forEach(function(a){
+      if (a.getAttribute('data-nav') === name) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+    if (scroll) window.scrollTo(0, 0);
+  }
+  function fromHash(){ return (location.hash || '').replace(/^#/, '') || 'home'; }
+  document.querySelectorAll('[data-nav]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var name = a.getAttribute('data-nav');
+      show(name, true);
+      try { history.pushState(null, '', name === 'home' ? location.pathname + location.search : '#' + name); } catch (err) {}
+    });
+  });
+  window.addEventListener('popstate', function(){ show(fromHash(), true); });
+  window.addEventListener('hashchange', function(){ show(fromHash(), true); });
+  show(fromHash(), false);
+
+  /* photo viewer */
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lb-img');
+  var lbClose = document.getElementById('lb-close');
+  var lastShot = null;
+  function openShot(btn){
+    var img = btn.querySelector('img');
+    lbImg.src = btn.getAttribute('data-full');
+    lbImg.alt = img ? img.alt : '';
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+    lastShot = btn;
+    lbClose.focus();
+  }
+  function closeShot(){
+    if (lb.hidden) return;
+    lb.hidden = true;
+    document.body.style.overflow = '';
+    if (lastShot) lastShot.focus();
+  }
+  document.querySelectorAll('.shot').forEach(function(b){
+    b.addEventListener('click', function(){ openShot(b); });
+  });
+  lb.addEventListener('click', closeShot);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeShot(); });
+
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    var original = b.textContent;
+    b.addEventListener('click', function(){
+      var el = document.getElementById(b.getAttribute('data-copy'));
+      var text = el.textContent.replace(/\s+/g, ' ').trim();
+      function flash(msg){ b.textContent = msg; setTimeout(function(){ b.textContent = original; }, 1600); }
+      function fallback(){
+        var r = document.createRange(); r.selectNodeContents(el);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        flash('Selected');
+      }
+      try {
+        navigator.clipboard.writeText(text).then(function(){ flash('Copied'); }, fallback);
+      } catch (e) { fallback(); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
